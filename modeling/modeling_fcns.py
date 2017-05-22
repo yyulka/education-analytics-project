@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, precision_score, recall_score
-from sklearn.metrics import classification_report 
+from sklearn.metrics import classification_report
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import roc_curve, auc
@@ -22,7 +22,6 @@ def run_baseline(X_train, X_test, y_train, y_test):
     bl.fit(X_train, y_train)
     predictions = bl.predict(X_test)
     print 'Baseline Classifier'
-    print np.mean(cross_val_score(bl, X_train, y_train, cv = 5, scoring='recall'))
 
     accuracy = np.mean([predictions == np.array(y_test)])
     precision = precision_score(y_test, predictions)
@@ -39,7 +38,6 @@ def run_rf(X_train, X_test, y_train, y_test):
     predictions = rf.predict(X_test)
 
     print 'Random Forest Classifier'
-    print np.mean(cross_val_score(rf, X_train, y_train, cv = 5, scoring='f1'))
 
     accuracy = np.mean([predictions == np.array(y_test)])
     precision = precision_score(y_test, predictions)
@@ -58,7 +56,6 @@ def run_knn(X_train, X_test, y_train, y_test):
     predictions_knn = knn.predict(X_test)
 
     print 'KNN Classifier'
-    print np.mean(cross_val_score(knn, X_train, y_train, cv = 5, scoring='f1'))
 
     accuracy = np.mean([predictions_knn == np.array(y_test)])
     precision = precision_score(y_test, predictions_knn)
@@ -76,9 +73,6 @@ def run_gb(X_train, X_test, y_train, y_test):
     predictions = gb.predict(X_test)
 
     print 'Gradient Boosting Classifier'
-    print np.mean(cross_val_score(gb, X_train, y_train, cv = 5, scoring='f1'))
-
-    print np.mean(cross_val_score(gb, X_train, y_train, cv = 5, scoring='recall'))
 
     accuracy = np.mean([predictions == np.array(y_test)])
     precision = precision_score(y_test, predictions)

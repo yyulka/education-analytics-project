@@ -4,11 +4,9 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, precision_score, recall_score
-from sklearn.metrics import classification_report
-from sklearn.model_selection import cross_val_score
+from sklearn.metrics import classification_report 
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import roc_curve, auc

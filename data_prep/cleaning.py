@@ -27,21 +27,15 @@ def preliminary_cleaning():
 
     # reading the original file
     studentInfo = pd.read_csv(DATASET_INPUT)
-    print('XXX 30')
     df_new1 = studentInfo.loc[studentInfo['final_result'] != 'Withdrawn']
-
-    print('XXX 32')
 
     # disability status to binary
     disability_mask = {'N': 0, 'Y': 1}
     df_new1.loc[:,'disability'] = df_new1['disability'].map(disability_mask)
 
-    print('XXX 36')
     # gender to binary
     gender_mask = {'F': 0, 'M': 1}
     df_new1.loc[:,'gender'] = df_new1['gender'].map(gender_mask)
-
-    print('XXX 40')
 
     # imd_band - convert into categories
     df_new1.loc[:,'imd_band'] = df_new1.imd_band.astype(str)
@@ -55,8 +49,6 @@ def preliminary_cleaning():
 
     # first_attempt as a binary
     df_new1.loc[:,'first_attempt'] = (df_new1['num_of_prev_attempts'] == 0)
-
-    print('XXX')
 
     # group by student id and course (module), take only the recent result
     # for each student - course combination

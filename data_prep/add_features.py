@@ -1,15 +1,17 @@
 
-import vle
 import main_table
+import vle
 import assessments
 import sys
 
 INTERMEDIATE_DATA = '../intermediate_data'
 
-# * joining steps
-# * import data from student VLE table and prepare for joining
-# * import data from assessments table and prepare for joining
-# * create the same tables for different courses - later
+'''
+Importing data from vle and assessment tables and preparing them for joining
+with the main table.
+
+'''
+
 
 def add_vles(mt):
     clean_vle = vle.clean_vle_checkpoint(days_range = None)
@@ -24,6 +26,7 @@ def add_vles(mt):
         vle_data = vle.clean_vle_checkpoint(days_range)
         mt.append_vle(vle_data)
         print len(mt.data)
+
 
 def add_assessments(mt):
     a1codes = [14984, 14996, 15008, 15020]
@@ -47,24 +50,11 @@ def add_assessments(mt):
         mt.append_assessment(assessment)
         print 'MT size after:' + str(len(mt.data))
 
-# def date_ranges_by_period(period):
-#     l = []
-#     for i in range(1, 8):
-#         days_range = (30*i, 30*(i+1))
-#         l.append(days_range)
-#     l2 = [(None,30)]
-#     for t in l:
-#         if t[1] <= period:
-#             l2.append(t)
-#     return l2
-
 
 
 if __name__ == '__main__':
     mt = main_table.MainTable(INTERMEDIATE_DATA + '/dataCourse-BBB.csv')
-
     add_vles(mt)
     add_assessments(mt)
     print mt.data.head()
-
     mt.save(INTERMEDIATE_DATA + '/main_table')

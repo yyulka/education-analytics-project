@@ -1,21 +1,29 @@
 import pandas as pd
 
+'''
+Class to merge different tables, drop redundant features and save output
+to a file.
+
+'''
 
 class MainTable(object):
     def __init__(self, demogr_csv):
         self.data = pd.read_csv(demogr_csv)
 
     def append_vle(self, vle):
-        data_full = pd.merge(self.data, vle, how='left', on=['id_student', 'code_presentation'])
-        self.data = data_full.fillna(0)
+        d = pd.merge(self.data, vle, how = 'left',
+                    on=['id_student', 'code_presentation'])
+        self.data = d.fillna(0)
 
     def append_assessment(self, assessment):
-        d = pd.merge(self.data, assessment,  how = 'left', on = ['id_student', 'code_presentation'])
+        d = pd.merge(self.data, assessment,  how = 'left',
+                    on = ['id_student', 'code_presentation'])
         self.data = d.fillna(0)
 
     def get_ml_data(self):
-        data = self.data.drop(['id_student', 'code_module', 'code_presentation', 'region', 'highest_education', 'age_band',
-                          'first_attempt', 'Unnamed: 0'], axis = 1)
+        data = self.data.drop(['id_student', 'code_module', 'code_presentation',
+                            'region', 'highest_education', 'age_band',
+                            'first_attempt', 'Unnamed: 0'], axis = 1)
         return data
 
     def save(self, basename):

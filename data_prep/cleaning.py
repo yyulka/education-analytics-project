@@ -8,7 +8,6 @@ cols_to_drop = ['id_student', 'code_module', 'code_presentation', 'region',
 dummies_to_drop = ['Lower Than A Level', '0-35']
 
 
-
 '''
 Initial cleaning of the demographic table.
 
@@ -27,6 +26,7 @@ Features cleaning and transformations:
 * first_attempt as a binary
 * group by student id and course (module), take only the most recent result
 '''
+
 
 def clean_data(input_path):
 

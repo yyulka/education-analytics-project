@@ -13,7 +13,7 @@ Feature engineering:
 '''
 
 
-# clean assessment table and add features
+# Clean assessment table and add features
 
 def clean_assessment():
 
